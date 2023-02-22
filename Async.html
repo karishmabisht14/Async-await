@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Task</title>
+</head>
+<body>
+    <script>
+        console.log('person1 : shows ticket');
+        console.log('person2 : shows ticket');
+
+        const person3 = async () => {
+            const promiseWifeBringingTickets = new Promise((resolve, reject)=> {
+                setTimeout(() => resolve('*ticket'),3000)
+            });
+
+            const getPopcorn = new Promise((resolve, reject) => resolve('*popcorn'));
+
+            const getButter = new Promise((resolve, reject) => resolve('*butter'));
+
+            const getColdDrinks = new Promise((resolve, reject) => resolve('*colddrinks'));
+
+            let ticket = await promiseWifeBringingTickets;
+            console.log(`Wife: Here the ${ticket}`);
+            console.log('Husband : Lets go then...');
+            console.log('Wife: No I am hungry');
+
+            let popcorn = await getPopcorn;
+            console.log(`Husband: I got some ${popcorn}`);
+            console.log('Husband : Lets go now...');
+            console.log('Wife: No I need a butter on my popcorn');
+
+            let butter = await getButter;
+            console.log(`Husband: I got the ${butter}`);
+            console.log('Husband : anything else??');
+            console.log('Wife: yaa I want colddrinks heheeh');
+
+            let colddrinks = await getColdDrinks;
+            console.log(`Husband: here ur ${colddrinks}`);
+            console.log('Husband : can we go now???');
+            console.log('Wife: yeah Ofcourse lets go we r getting late');
+            console.log('Husband: thank you for ur remainder *grins*');
+
+            return ticket;
+            
+        }
+        person3().then((t) => console.log(`person3: shows ${t}`));
+        console.log('person4 : shows ticket');
+        console.log('person5 : shows ticket');
+    </script>    
+</body>
+</html>
